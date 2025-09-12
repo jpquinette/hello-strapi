@@ -1,20 +1,23 @@
-async function getMessages() {
-  const res = await fetch("http://localhost:1337/api/messages", { cache: "no-store" });
-  const data = await res.json();
-  return data.data;
-}
+type Message = {
+  id: number;
+  attributes: {
+    title: string;
+    content: string;
+  };
+};
 
 export default async function Home() {
-  const messages = await getMessages();
+  const res = await fetch("http://localhost:1337/api/messages", { cache: "no-store" });
+  const data: { data: Message[] } = await res.json();
 
   return (
     <main style={{ padding: 40 }}>
       <h1>Messages depuis Strapi 🚀</h1>
       <ul>
-        {messages.map((m: any) => (
+        {data.data.map((m) => (
           <li key={m.id} style={{ marginBottom: 20 }}>
-            <strong>{m.title}</strong>
-            <p>{m.content}</p>
+            <strong>{m.attributes.title}</strong>
+            <p>{m.attributes.content}</p>
           </li>
         ))}
       </ul>
