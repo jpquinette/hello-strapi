@@ -7,7 +7,7 @@ type Message = {
 };
 
 export default async function Home() {
-  const res = await fetch("http://localhost:1337/api/messages", { cache: "no-store" });
+  const res = await fetch("https://hello-strapi-backend.onrender.com/api/messages", { cache: "no-store" });
   const data: { data: Message[] } = await res.json();
 
   return (
