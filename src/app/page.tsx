@@ -8,10 +8,7 @@ export default async function Home() {
   let messages: Message[] = [];
 
   try {
-    const res = await fetch(
-      "https://hello-strapi-backend-production.up.railway.app/api/messages",
-      { cache: "no-store" }
-    );
+    const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/messages`, { cache: "no-store" });
 
     if (!res.ok) {
       console.error("Erreur API:", res.statusText);
