@@ -1,9 +1,7 @@
 type Message = {
   id: number;
-  attributes: {
-    title: string;
-    content: string;
-  };
+  title: string;
+  content: string;
 };
 
 export default async function Home() {
@@ -11,7 +9,7 @@ export default async function Home() {
 
   try {
     const res = await fetch(
-      "https://hello-strapi-backend.onrender.com/api/messages",
+      "https://hello-strapi-backend-production.up.railway.app/api/messages",
       { cache: "no-store" }
     );
 
@@ -32,8 +30,8 @@ export default async function Home() {
         {messages.length > 0 ? (
           messages.map((m) => (
             <li key={m.id} style={{ marginBottom: 20 }}>
-              <strong>{m.attributes.title}</strong>
-              <p>{m.attributes.content}</p>
+              <strong>{m.title}</strong>
+              <p>{m.content}</p>
             </li>
           ))
         ) : (
